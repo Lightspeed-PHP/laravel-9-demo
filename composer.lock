@@ -5904,7 +5904,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jradtilbrook/thingy-client",
-                "reference": "133d69071945701ac4e5e6bb5eeb3303b28c2fd9"
+                "reference": "f776594f261d68301529ea0405bb907c304c4448"
             },
             "require": {
                 "ext-curl": "*",
@@ -5944,7 +5944,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2023-07-15T07:44:30+00:00"
+            "time": "2023-07-15T10:29:30+00:00"
         },
         {
             "name": "mockery/mockery",

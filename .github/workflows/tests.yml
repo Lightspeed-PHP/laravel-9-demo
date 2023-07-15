@@ -7,11 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node_count: [1]
-        node_index: [0, 1]
+        node_count: [3]
+        node_index: [0, 1, 2]
         test_runner: [lightspeed, phpunit]
         exclude:
           - node_index: 1
+            test_runner: phpunit
+          - node_index: 2
             test_runner: phpunit
 
     name: Demo
@@ -30,10 +32,14 @@ jobs:
     - name: Install PHP dependencies
       run: composer update --no-interaction --no-progress
 
+    - name: Set APP_KEY
+      run: cp .env.example .env && php artisan key:generate
+
     - name: Tests ${{ matrix.test_runner }} (${{ matrix.node_index}})
       env:
         LIGHTSPEED_API_TOKEN: ${{ secrets.LIGHTSPEED_TOKEN }}
-        LIGHTSPEED_BASE_URL: ${{ secrets.LIGHTSPEED_URL }}
+        LIGHTSPEED_BASE_URL: ${{ vars.LIGHTSPEED_URL }}
         LIGHTSPEED_NODE_COUNT: ${{ matrix.node_count }}
         LIGHTSPEED_NODE_INDEX: ${{ matrix.node_index }}
+        LIGHTSPEED_MESSAGE: ${{ github.event.head_commit.message }}
       run: php vendor/bin/${{ matrix.test_runner }} --colors=always
