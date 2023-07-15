@@ -1,0 +1,37 @@
+name: Demo
+
+on: ['push']
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_count: [1]
+        node_index: [0, 1]
+        test_runner: [lightspeed, phpunit]
+        exclude:
+          - node_index: 1
+            test_runner: phpunit
+
+    name: Demo
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 7.4
+        tools: composer:v2
+        coverage: none
+
+    - name: Install PHP dependencies
+      run: composer update --no-interaction --no-progress
+
+    - name: Tests ${{ matrix.test_runner }} (${{ matrix.node_index}})
+      env:
+        LIGHTSPEED_NODE_COUNT: ${{ matrix.node_count }}
+        LIGHTSPEED_NODE_INDEX: ${{ matrix.node_index }}
+      run: php vendor/bin/${{ matrix.test_runner }} --colors=always
