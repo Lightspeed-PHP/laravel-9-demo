@@ -5,7 +5,6 @@ steps:
     command: composer buildkite
     plugins:
       - docker-compose#v4.14.0:
-          mount-ssh-agent: 'true'
           run: test
           env:
             - BUILDKITE
@@ -25,7 +24,6 @@ steps:
     parallelism: 3
     plugins:
       - docker-compose#v4.14.0:
-          mount-ssh-agent: 'true'
           run: test
           env:
             - BUILDKITE
