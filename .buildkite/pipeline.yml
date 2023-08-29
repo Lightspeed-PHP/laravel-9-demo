@@ -1,0 +1,41 @@
+steps:
+  - label: ':php: Run tests'
+    artifact_paths:
+      - coverage/**
+    command: composer buildkite
+    plugins:
+      - docker-compose#v4.14.0:
+          mount-ssh-agent: 'true'
+          run: test
+          env:
+            - BUILDKITE
+            - BUILDKITE_BUILD_NUMBER
+            - BUILDKITE_BRANCH
+            - BUILDKITE_COMMIT
+            - BUILDKITE_MESSAGE
+            - BUILDKITE_PULL_REQUEST
+            - BUILDKITE_BUILD_URL
+            - BUILDKITE_JOB_ID
+            - COVERALLS_REPO_TOKEN
+
+  - label: ':php: Run tests - using lightspeed %n'
+    artifact_paths:
+      - coverage/**
+    command: composer lightspeed
+    parallelism: 3
+    plugins:
+      - docker-compose#v4.14.0:
+          mount-ssh-agent: 'true'
+          run: test
+          env:
+            - BUILDKITE
+            - BUILDKITE_BUILD_NUMBER
+            - BUILDKITE_BRANCH
+            - BUILDKITE_COMMIT
+            - BUILDKITE_PARALLEL_JOB_COUNT
+            - BUILDKITE_PARALLEL_JOB
+            - BUILDKITE_MESSAGE
+            - BUILDKITE_PULL_REQUEST
+            - BUILDKITE_BUILD_URL
+            - BUILDKITE_JOB_ID
+            - COVERALLS_REPO_TOKEN
