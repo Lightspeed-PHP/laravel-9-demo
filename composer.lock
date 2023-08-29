@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe8f8c8ff193db3d386b6117455233d7",
+    "content-hash": "82376a45819680499e8081d069883c9a",
     "packages": [
         {
             "name": "brick/math",
@@ -5903,8 +5903,14 @@
             "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "https://github.com/lightspeed-php/lightspeed",
-                "reference": "a8aeb1f6b48f25050e8214cc911af1daa860eaa3"
+                "url": "https://github.com/lightspeed-php/lightspeed.git",
+                "reference": "881e49d275da5e6d96559ad6fab06abcbbe2c5b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lightspeed-php/lightspeed/zipball/881e49d275da5e6d96559ad6fab06abcbbe2c5b8",
+                "reference": "881e49d275da5e6d96559ad6fab06abcbbe2c5b8",
+                "shasum": ""
             },
             "require": {
                 "php": "^7.3 || ^8.0",
@@ -5920,11 +5926,7 @@
                     "Lightspeed\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-4-Clause"
             ],
@@ -5943,7 +5945,11 @@
                 "testing",
                 "unit"
             ],
-            "time": "2023-08-29T07:36:21+00:00"
+            "support": {
+                "issues": "https://github.com/lightspeed-php/lightspeed/issues",
+                "source": "https://github.com/lightspeed-php/lightspeed/tree/main"
+            },
+            "time": "2023-08-29T13:47:33+00:00"
         },
         {
             "name": "mockery/mockery",
