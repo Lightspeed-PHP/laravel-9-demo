@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.7"
     },
     "require-dev": {
+        "brianium/paratest": "^6.10",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
@@ -37,13 +38,13 @@
         }
     },
     "scripts": {
-        "buildkite": [
+        "paratest": [
             "@php --version",
             "@composer --version",
             "@composer install",
             "echo APP_KEY= > .env",
             "@php artisan key:generate",
-            "@phpunit"
+            "@php vendor/bin/paratest"
         ],
         "lightspeed": [
             "@php --version",
@@ -53,7 +54,14 @@
             "@php artisan key:generate",
             "@php vendor/bin/lightspeed"
         ],
-        "phpunit": "@php vendor/bin/phpunit --colors=always",
+        "phpunit": [
+            "@php --version",
+            "@composer --version",
+            "@composer install",
+            "echo APP_KEY= > .env",
+            "@php artisan key:generate",
+            "@php vendor/bin/phpunit --colors=always"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

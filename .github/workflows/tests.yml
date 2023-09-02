@@ -9,12 +9,16 @@ jobs:
       matrix:
         node_count: [3]
         node_index: [0, 1, 2]
-        test_runner: [lightspeed, phpunit]
+        test_runner: [lightspeed, phpunit, paratest]
         exclude:
           - node_index: 1
             test_runner: phpunit
           - node_index: 2
             test_runner: phpunit
+          - node_index: 1
+            test_runner: paratest
+          - node_index: 2
+            test_runner: paratest
 
     name: Demo
 

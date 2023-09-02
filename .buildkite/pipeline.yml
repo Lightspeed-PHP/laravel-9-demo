@@ -1,8 +1,26 @@
 steps:
-  - label: ':php: Run tests'
+  - label: ':php: Run tests with phpunit'
     artifact_paths:
       - coverage/**
-    command: composer buildkite
+    command: composer phpunit
+    plugins:
+      - docker-compose#v4.14.0:
+          run: test
+          env:
+            - BUILDKITE
+            - BUILDKITE_BUILD_NUMBER
+            - BUILDKITE_BRANCH
+            - BUILDKITE_COMMIT
+            - BUILDKITE_MESSAGE
+            - BUILDKITE_PULL_REQUEST
+            - BUILDKITE_BUILD_URL
+            - BUILDKITE_JOB_ID
+            - COVERALLS_REPO_TOKEN
+
+  - label: ':php: Run tests with paratest'
+    artifact_paths:
+      - coverage/**
+    command: composer paratest
     plugins:
       - docker-compose#v4.14.0:
           run: test
